@@ -291,9 +291,9 @@ def user_logout(request):
 
 
 
-@login_required
-def restricted(request):
-    return render(request, 'rango/restricted.html', {})
+# @login_required
+# def restricted(request):
+#     return render(request, 'rango/restricted.html', {})
 
 
 def get_server_side_cookie(request, cookie, default_val=None):
