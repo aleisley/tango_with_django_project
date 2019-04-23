@@ -1,24 +1,23 @@
-
 <ul class="nav flex-column pt-6">
-	
-{% if cats %}
+
+    {% if cats %}
     {% for c in cats %}
     {% if c == act_cat %}
-        <li  class="nav-item">
-              <a  class="nav-link active" href="{% url 'rango:show_category' c.slug %}">
-				  <span data-feather="archive"></span>
-				  {{ c.name }}</a>
-        
-        </li>
-    {% else  %}
-        <li class="nav-item">
-            <a  class="nav-link" href="{% url 'rango:show_category' c.slug %}">
-				<span data-feather="archive"></span>{{ c.name }}</a>
-        </li>
-    {% endif %}
-{% endfor %}
-{% else %}
-    <li class="nav-item">No Categories Yet!</li>
-{% endif %}
-</ul>
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'rango:show_category' c.slug %}">
+            <span data-feather="archive"></span>
+            {{ c.name }}</a>
 
+    </li>
+    {% else  %}
+    <li class="nav-item">
+        <a class="nav-link" style="display: inline-block;" href="{% url 'rango:show_category' c.slug %}">
+            <span data-feather="archive"></span>{{ c.name }}</a>
+        <a href="{% url 'rango:delete_cat' c.id %}">x</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+    {% else %}
+    <li class="nav-item">No Categories Yet!</li>
+    {% endif %}
+</ul>

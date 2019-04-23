@@ -21,6 +21,11 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 
+def delete_cat(request, category_id):
+    category = Category.objects.get(id=category_id)
+    category.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 def index(request):
     # return HttpResponse("Rango says hey there partner! <br/> <a href='/rango/about/'>About</a>")
 

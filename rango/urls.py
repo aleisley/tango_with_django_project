@@ -27,4 +27,5 @@ urlpatterns = [
     path('like/', views.like_category, name='like_category'),
     path('suggest/', views.suggest_category, name='suggest_category'),
     path('add/', views.auto_add_page, name='auto_add_page'),
+    path('delete_cat/<int:category_id>', views.delete_cat, name='delete_cat')
 ]
