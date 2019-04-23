@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.urls import reverse
 
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from rango import views
 from registration.backends.simple.views import RegistrationView
@@ -31,7 +32,10 @@ class MyRegistrationView(RegistrationView):
 urlpatterns = [
     path('', views.index, name='index'),
     path('rango/', include('rango.urls')),
+    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
     path('admin/', admin.site.urls),
-    path('accounts/register/', MyRegistrationView.as_view(), name='registration_register'),
+    path('accounts/register/', MyRegistrationView.as_view(),
+         name='registration_register'),
     path('accounts/', include('registration.backends.simple.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

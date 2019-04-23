@@ -14,10 +14,11 @@ from rango.models import Category
 from rango.models import Page
 from rango.forms import CategoryForm
 from rango.forms import PageForm
-from rango.forms import UserForm, UserProfileForm
+from rango.forms import UserForm, UserProfileForm, UserRegisterForm
 from rango.bing_search import run_query, read_bing_key
 from rango.models import UserProfile
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 
 def index(request):
@@ -178,6 +179,20 @@ def add_page(request, category_name_slug):
     context_dict = {'form': form, 'category': category}
     return render(request, 'rango/add_page.html', context_dict)
 
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Registration success for {username}')
+            return redirect('login')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'registration/register.html', {'form': form})
+
+'''
 def register(request):
     # A boolean value for telling the template
     # whether the registration was successful.
@@ -237,7 +252,7 @@ def register(request):
                   {'user_form': user_form,
                    'profile_form': profile_form,
                    'registered': registered})
-
+'''
 
 def user_login(request):
     # If the request is a HTTP POST, try to pull out the relevant information.

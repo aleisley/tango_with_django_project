@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rango',
     'registration',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +66,7 @@ MEDIA_URL = '/media/'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,],
+        'DIRS': [TEMPLATE_DIR, ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -113,7 +114,6 @@ PASSWORD_HASHERS = [
 ]
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -157,7 +157,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 #LOG_FILE = os.path.join(BASE_DIR, 'interaction.log')
 
-#LOGGING = {
+# LOGGING = {
 #    'version': 1,
 #    'disable_existing_loggers': False,
 #    'handlers': {
@@ -174,4 +174,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 #            'propagate': True,
 #        },
 #    },
-#}
+# }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'rango:index'

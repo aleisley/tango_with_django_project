@@ -1,31 +1,21 @@
-{% extends "rango/base.html" %}
-
-
-	{% block body_block %}
-	<link href="https://getbootstrap.com/docs/4.2/examples/signin/signin.css"
-	    rel="stylesheet">
-	<div class="jumbotron p-4">
-	    <h1 class="jumbotron-heading">Login</h1>
-	</div>
-	<div class="container">
-		<div class="row">
-	<form class="form-signin" role="form" method="post" action=".">
-	    {% csrf_token %}
-	    <h2 class="form-signin-heading">Please sign in</h2>
-	    <label for="inputUsername" class="sr-only">Username</label>
-	    <input type="text" name="username" id="id_username" class="form-control" 
-	           placeholder="Username" required autofocus>
-	    <label for="inputPassword" class="sr-only">Password</label>
-	    <input type="password" name="password" id="id_password" class="form-control"
-	           placeholder="Password" required>
-	    <button class="btn btn-lg btn-primary btn-block" type="submit" 
-	            value="Submit" />Sign in</button>
+{% extends 'rango/base.html' %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+<div class="content-section p-4">
+	<form method="POST">
+		{% csrf_token %}
+		<fieldset class="form-group">
+			<legend class="border-bottom mb-4">LOGIN</legend>
+			{{ form | crispy }}
+		</fieldset>
+		<div class="form-group">
+			<button class="btn btn-outline-info" type="submit">Log In</button>
+		</div>
 	</form>
-</div>
-
-<div class="row pt-5">
-</div>
+	<div class="border-top pt-3">
+		<small class="text-muted">
+			Need an account? <a class="ml-2" href="#">Register Now</a>
+		</small>
 	</div>
-	
-	
-	{% endblock %}
+</div>
+{% endblock  %}
